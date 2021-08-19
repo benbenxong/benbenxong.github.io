@@ -3,15 +3,15 @@ tags: []
 categories: []
 date: 2021-08-16 14:26:00
 ---
-##1. 安装软件
-#1.1 安装node
+# 1. 安装软件
+## 1.1 安装node
 ```
 node.org
 root用户
 # sudo su
 # node -v    
 ```
-#1.2 安装hexo
+## 1.2 安装hexo
 ```
 # npm install -g hexo/hexo-cli
 # hexo -v
@@ -35,8 +35,8 @@ localhost:4000
 
 
 ```
-##2. github 设置
-2.1 github 建新项目
+# 2. github 设置
+## 2.1 github 建新项目
 ```
 new repository
 名称:<用户名>.github.io
@@ -44,7 +44,7 @@ new repository
 create
 
 ```
-2.2 与github 建立ssh连接
+## 2.2 与github 建立ssh连接
 ```
 # git --global user.mail "..."
 # git --global user.name "..."
@@ -60,7 +60,7 @@ ssh -T git@github.com
     
 ```
 
-2.3 客户端安装git插件
+## 2.3 客户端安装git插件
 ```
 # npm install hexo-deployer-git --save
 设置 _config.yml
@@ -70,10 +70,10 @@ ssh -T git@github.com
   
 
 ```
-2.4 github 端设置新分支 hexo
+## 2.4 github 端设置新分支 hexo
  将hexo 分支设为默认分支
 
-2.5 新客户端电脑配置
+## 2.5 新客户端电脑配置
 ```
 # npm install hexo hexo-deployer-git --save
 # git clone http://...git
