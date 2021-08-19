@@ -3,8 +3,7 @@ author: John Doe
 date: 2021-08-16 15:41:31
 tags:
 ---
-```
-<p>
+```python
 import os, time, random, threading 
 from datetime import datetime,timedelta
 from concurrent.futures import ThreadPoolExecutor, wait, ALL_COMPLETED
@@ -47,5 +46,4 @@ if __name__=='__main__':
     end = time.time()
     print('All subprocesses done.')
     print('Task all runs %0.2f seconds.' % ((end - start)))
-</p>
 ```

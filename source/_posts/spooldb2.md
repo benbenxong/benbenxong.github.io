@@ -3,8 +3,7 @@ author: John Doe
 date: 2021-08-16 15:43:19
 tags:
 ---
-```
-<p>
+```python
 from gevent import monkey
 monkey.patch_all()
 import gevent
@@ -35,5 +34,5 @@ jobs = [gevent.spawn(task, ftime, step) for ftime in rqs]
 gevent.joinall(jobs)
 #[job.value for job in jobs]
 print("all done in %s" % (time.time() - start_time))
-</p>
+
 ```

@@ -71,6 +71,120 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-spooldb2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/08/16/spooldb2/" class="article-date">
+  <time class="dt-published" datetime="2021-08-16T07:43:19.000Z" itemprop="datePublished">2021-08-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/08/16/spooldb2/">spooldb2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;</span><br><span class="line">from gevent import monkey</span><br><span class="line">monkey.patch_all()</span><br><span class="line">import gevent</span><br><span class="line">from datetime import datetime,timedelta</span><br><span class="line">import os, time</span><br><span class="line"></span><br><span class="line">startftime = &#x27;202101011500&#x27;</span><br><span class="line">endftime =   &#x27;202101011700&#x27;</span><br><span class="line">step = 30</span><br><span class="line"></span><br><span class="line">i = 0</span><br><span class="line">prange = round((datetime.strptime(endftime,&#x27;%Y%m%d%H%M&#x27;).timestamp() - datetime.strptime(startftime,&#x27;%Y%m%d%H%M&#x27;).timestamp())/(step * 60)) + 1</span><br><span class="line">#print( list((datetime.strptime(startftime,&#x27;%Y%m%d%H%M&#x27;) + timedelta(minutes = i*30)).strftime(&quot;%Y%m%d%H%M&quot;) for i in (range(prange)) ))</span><br><span class="line"></span><br><span class="line">def task(ftime,step):</span><br><span class="line">    print(&#x27;Run task %s ...&#x27; % (ftime))</span><br><span class="line">    start = time.time()</span><br><span class="line">    gevent.sleep(0)</span><br><span class="line">    #print(r&quot;sqlplus zhanghongjing/zhanghongjing@o39 @D:\worknote\zhaobin\脚本及结果\20210715通州数据分析01182-王鹃\sp_rtd.sql &quot; + ftime +&quot; &quot; + str(step) +&quot;&gt;nul&quot;)</span><br><span class="line">    os.system(r&quot;sqlplus zhanghongjing/zhanghongjing@o39 @D:\worknote\zhaobin\脚本及结果\20210715通州数据分析01182-王鹃\sp_rtd.sql &quot; + ftime +&quot; &quot; + str(step) +&quot; &gt;nul&quot;)</span><br><span class="line">    end = time.time()</span><br><span class="line">    print(&#x27;Task %s runs %0.2f seconds.&#x27; % (ftime, (end - start)))</span><br><span class="line"></span><br><span class="line">start_time = time.time()</span><br><span class="line"></span><br><span class="line">rqs = list((datetime.strptime(startftime,&#x27;%Y%m%d%H%M&#x27;) + timedelta(minutes = i*step)).strftime(&quot;%Y%m%d%H%M&quot;) for i in (range(prange)) )</span><br><span class="line">jobs = [gevent.spawn(task, ftime, step) for ftime in rqs]</span><br><span class="line">gevent.joinall(jobs)</span><br><span class="line">#[job.value for job in jobs]</span><br><span class="line">print(&quot;all done in %s&quot; % (time.time() - start_time))</span><br><span class="line">&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/08/16/spooldb2/" data-id="cksec1qvx0004qzwb6ziydb44" data-title="spooldb2" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-spooldb1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/08/16/spooldb1/" class="article-date">
+  <time class="dt-published" datetime="2021-08-16T07:41:31.000Z" itemprop="datePublished">2021-08-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/08/16/spooldb1/">spooldb1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;</span><br><span class="line">import os, time, random, threading </span><br><span class="line">from datetime import datetime,timedelta</span><br><span class="line">from concurrent.futures import ThreadPoolExecutor, wait, ALL_COMPLETED</span><br><span class="line"></span><br><span class="line">def long_time_task(ftime):</span><br><span class="line">    print(&#x27;Run task %s (%s)...&#x27; % (ftime, threading.active_count()))</span><br><span class="line">    print(&#x27;thread %s &gt;&gt;&gt; %s&#x27; % (threading.current_thread().name, ftime))</span><br><span class="line">    start = time.time()</span><br><span class="line">    print(os.system(r&quot;sqlplus zhanghongjing/zhanghongjing@o39 @D:\worknote\zhaobin\脚本及结果\20210812丰台数据分析01240-郎维晨\sp_rtd.sql &quot; + ftime +&quot; 30&gt;nul&quot;))</span><br><span class="line">    end = time.time()</span><br><span class="line">    print(&#x27;Task %s runs %0.2f seconds.&#x27; % (ftime, (end - start)))</span><br><span class="line">    #return res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">if __name__==&#x27;__main__&#x27;:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    start = time.time()</span><br><span class="line"></span><br><span class="line">    i = 0</span><br><span class="line">    startftime = &#x27;201901010000&#x27;</span><br><span class="line">    endftime =   &#x27;202105312330&#x27;</span><br><span class="line">    </span><br><span class="line">    #executor = ThreadPoolExecutor(max_workers=25)</span><br><span class="line">    </span><br><span class="line">    pars = list()</span><br><span class="line">    while startftime &lt;= endftime:</span><br><span class="line">        #t = executor.submit(long_time_task,startftime)</span><br><span class="line">        #print(&quot;in main : get page &#123;&#125;s success&quot;.format(t))</span><br><span class="line">        pars.append(startftime)</span><br><span class="line">        ftimed = datetime.strptime(startftime,&#x27;%Y%m%d%H%M&#x27;) + timedelta(minutes = 30)</span><br><span class="line">        i += 1</span><br><span class="line">        startftime = ftimed.strftime(&quot;%Y%m%d%H%M&quot;)</span><br><span class="line">     </span><br><span class="line">    with ThreadPoolExecutor(max_workers=25) as executor:</span><br><span class="line">        executor.map(long_time_task,pars)</span><br><span class="line">        </span><br><span class="line">    </span><br><span class="line">    end = time.time()</span><br><span class="line">    print(&#x27;All subprocesses done.&#x27;)</span><br><span class="line">    print(&#x27;Task all runs %0.2f seconds.&#x27; % ((end - start)))</span><br><span class="line">&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/08/16/spooldb1/" data-id="cksec1qvv0003qzwbakzg0cob" data-title="spooldb1" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-spooldb" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/08/16/spooldb/" class="article-date">
+  <time class="dt-published" datetime="2021-08-16T07:31:53.000Z" itemprop="datePublished">2021-08-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/08/16/spooldb/">spooldb</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;</span><br><span class="line">from multiprocessing import Pool</span><br><span class="line">import os, time, random</span><br><span class="line">from datetime import datetime,timedelta</span><br><span class="line"></span><br><span class="line">def long_time_task(ftime):</span><br><span class="line">    print(&#x27;Run task %s (%s)...&#x27; % (ftime, os.getpid()))</span><br><span class="line">    start = time.time()</span><br><span class="line">    print(os.system(r&quot;sqlplus zhanghongjing/zhanghongjing@o39 @D:\worknote\zhaobin\脚本及结果\20210728审计数据01241-江宁\sp_rtd.sql &quot; + ftime +&quot; 30&gt;nul&quot;))</span><br><span class="line">    end = time.time()</span><br><span class="line">    print(&#x27;Task %s runs %0.2f seconds.&#x27; % (ftime, (end - start)))</span><br><span class="line"></span><br><span class="line">if __name__==&#x27;__main__&#x27;:</span><br><span class="line">    print(&#x27;Parent process %s.&#x27; % os.getpid())</span><br><span class="line">    p = Pool(8)</span><br><span class="line">    start = time.time()</span><br><span class="line">    startftime = &#x27;201801010000&#x27;</span><br><span class="line">    endftime =   &#x27;202107281030&#x27;</span><br><span class="line">    i = 0</span><br><span class="line">    while startftime &lt;= endftime:</span><br><span class="line">        p.apply_async(long_time_task, args=(startftime,))</span><br><span class="line">        ftimed = datetime.strptime(startftime,&#x27;%Y%m%d%H%M&#x27;) + timedelta(minutes = 30)</span><br><span class="line">        i += 1</span><br><span class="line">        startftime = ftimed.strftime(&quot;%Y%m%d%H%M&quot;)</span><br><span class="line">        </span><br><span class="line">    print(&#x27;Waiting for all subprocesses done...&#x27;)</span><br><span class="line">    p.close()</span><br><span class="line">    p.join()</span><br><span class="line">    end = time.time()</span><br><span class="line">    print(&#x27;All subprocesses done.&#x27;)</span><br><span class="line">    print(&#x27;Task all runs %0.2f seconds.&#x27; % ((end - start)))</span><br><span class="line"> &lt;/p&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/08/16/spooldb/" data-id="cksec1qvs0002qzwbc8j79mjk" data-title="spooldb" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-aaa" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/08/16/aaa/" class="article-date">
@@ -97,7 +211,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/16/aaa/" data-id="cksea90yv0001w2wbfe9jelu5" data-title="aaa" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/16/aaa/" data-id="cksec1qvi0000qzwb1uzehd2s" data-title="aaa" class="article-share-link">Share</a>
       
       
       
@@ -136,7 +250,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/14/test/" data-id="cksea90z00003w2wbc8ixbauq" data-title="test" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/14/test/" data-id="cksec1qvy0005qzwb71548mn6" data-title="test" class="article-share-link">Share</a>
       
       
       
@@ -187,7 +301,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/14/hello-world/" data-id="cksea90yy0002w2wb1oc63hdj" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/14/hello-world/" data-id="cksec1qvp0001qzwbhegy4vuc" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -227,7 +341,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/08/11/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E6%96%87/" data-id="cksea90z10004w2wb8jcrbm6h" data-title="我的第一篇博文" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/08/11/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E6%96%87/" data-id="cksec1qw00006qzwbdoyd8a6f" data-title="我的第一篇博文" class="article-share-link">Share</a>
       
       
       
@@ -270,19 +384,23 @@
       <ul>
         
           <li>
+            <a href="/2021/08/16/spooldb2/">spooldb2</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/16/spooldb1/">spooldb1</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/16/spooldb/">spooldb</a>
+          </li>
+        
+          <li>
             <a href="/2021/08/16/aaa/">aaa</a>
           </li>
         
           <li>
             <a href="/2021/08/14/test/">test</a>
-          </li>
-        
-          <li>
-            <a href="/2021/08/14/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2021/08/11/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E6%96%87/">我的第一篇博文</a>
           </li>
         
       </ul>

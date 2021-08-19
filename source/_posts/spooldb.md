@@ -3,8 +3,7 @@ author: John Doe
 date: 2021-08-16 15:31:53
 tags:
 ---
-```
-<p>
+```python
 from multiprocessing import Pool
 import os, time, random
 from datetime import datetime,timedelta
@@ -35,5 +34,4 @@ if __name__=='__main__':
     end = time.time()
     print('All subprocesses done.')
     print('Task all runs %0.2f seconds.' % ((end - start)))
- </p>
  ```
