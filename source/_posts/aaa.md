@@ -6,6 +6,7 @@ date: 2021-08-16 14:26:00
 # 1. 安装软件
 ## 1.1 安装node
 ```
+  
 node.org
 root用户
 # sudo su
@@ -75,6 +76,7 @@ ssh -T git@github.com
 
 ## 2.5 新客户端电脑配置
 ```
+
 # npm install hexo hexo-deployer-git --save
 # git clone http://...git
 # hexo n "abc"
@@ -87,12 +89,18 @@ ssh -T git@github.com
 # git branch //hexo
 # git add .
 # git commit -m "..."
-# git push
+# git push  
 
-规则很简单，不做过多解释，但是有时候在项目开发过程中，突然心血来潮想把某些目录或文件加入忽略规则，按照上述方法定义后发现并未生效，原因是.gitignore只能忽略那些原来没有被track的文件，如果某些文件已经被纳入了版本管理中，则修改.gitignore是无效的。那么解决方法就是先把本地缓存删除（改变成未track状态），然后再提交：
+规则很简单，不做过多解释，但是有时候在项目开发过程中，突然心血来潮想把某些目录或文件加入忽略规则，按照上述方法定义后发现并未生效，原因是.gitignore只能忽略那些原来没有被track的文件，如果某些文件已经被纳入了版本管理中，则修改.gitignore是无效的。那么解决方法就是先把本地缓存删除（改变成未track状态），然后再提交：  
 
 git rm -r --cached .
 git add .
 git commit -m 'update .gitignore'
+
+执行本地修改前，需 git pull。
+在 config 中设置 rebase 选项，使得 git pull 使用 rebase 整合所做修改。  
+git config --global pull.rebase true
+git config --global branch.autoSetupRebase always  
+
 
 ```
