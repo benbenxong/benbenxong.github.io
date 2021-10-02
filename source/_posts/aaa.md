@@ -47,8 +47,8 @@ create
 ```
 ## 2.2 与github 建立ssh连接
 ```
-# git --global user.mail "..."
-# git --global user.name "..."
+# git config --global user.mail "..."
+# git config --global user.name "..."
 # ssh-agent ...
 /root/.ssh/id_..pub 粘贴到github/setting/ssh
 
@@ -77,7 +77,8 @@ ssh -T git@github.com
 ## 2.5 新客户端电脑配置
 ```
 
-# npm install hexo hexo-deployer-git --save
+# npm install hexo hexo-deployer-git --save 
+##尽量使用npm需不是cnpm 安装
 # git clone http://...git
 # hexo n "abc"
 # vim abc.md
